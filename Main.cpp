@@ -4,7 +4,6 @@
 #include "DarkReignPatch.h"
 #pragma pack(1)
 
-
 HINSTANCE hLThis = 0;
 HINSTANCE hL = 0;
 FARPROC p[112] = { 0 };
@@ -44,6 +43,8 @@ BOOL WINAPI DllMain(HINSTANCE hInst, DWORD reason, LPVOID)
 		
 		DWORD threadId = 0;
 		HANDLE hThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)InitialisePatch, NULL, 0, &threadId);
+		if (!hThread)
+			return false;
 	}
 	if (reason == DLL_PROCESS_DETACH)
 	{
